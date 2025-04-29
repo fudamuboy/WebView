@@ -8,7 +8,8 @@ export default function HomeScreen() {
     const navigation = useNavigation();
 
     const handlePress = () => {
-        navigation.navigate('WebScreen');
+        // navigation.navigate('WebScreen');
+        navigation.navigate('BottomSheet')
     };
 
     return (
@@ -22,9 +23,8 @@ export default function HomeScreen() {
             </View>
             <View style={styles.buttonContainer}>
                 <Button
-                    title="PRESS"
+                    title="Ouvrir BottomSheet"
                     onPress={handlePress}
-
                 />
             </View>
         </View>
@@ -52,6 +52,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingBottom: 20,
-
     },
 });
