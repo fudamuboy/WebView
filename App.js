@@ -27,7 +27,7 @@ export default function App() {
           options={{
             headerShown: true,
             headerBackTitle: "Retour",
-            headerTitle: "Migros",
+            headerTitle: "Amazon",
           }}
         />
       </Stack.Navigator>

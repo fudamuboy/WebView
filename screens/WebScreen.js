@@ -20,7 +20,7 @@ export default function WebScreen() {
         <View style={styles.container}>
             <WebView
                 style={styles.webview}
-                source={{ uri: 'https://www.migros.com.tr/' }}
+                source={{ uri: 'https://www.amazon.com.tr/' }}
                 javaScriptEnabled={true}
                 domStorageEnabled={true}
                 onLoadStart={() => setVisible(true)}

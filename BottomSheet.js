@@ -1,9 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View, Image } from 'react-native'
 import React, { useRef, useCallback, useMemo } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheetComponent, { BottomSheetView } from '@gorhom/bottom-sheet';
 
+import { useNavigation } from '@react-navigation/native';
+
 export default function BottomSheet() {
+    const navigation = useNavigation()
     const bottomSheetRef = useRef(null);
 
     const snapPoints = useMemo(() => ['25%', '50%', '70%', '100%'], []);
@@ -11,9 +14,18 @@ export default function BottomSheet() {
     const handleSheetChanges = useCallback((index) => {
         console.log('handleSheetChanges', index);
     }, []);
-
+    const pressHandler = () => {
+        navigation.navigate('WebScreen')
+    }
     return (
         <GestureHandlerRootView style={styles.container}>
+            <View style={styles.imageContainer}>
+                <Image
+                    source={require('./assets/valide.webp')}
+                    style={styles.img}
+                    resizeMode="contain"
+                />
+            </View>
             <View style={styles.background}>
                 <Text style={styles.backgroundText}>Contenu de fond</Text>
             </View>
@@ -28,8 +40,14 @@ export default function BottomSheet() {
                 <BottomSheetView style={styles.contentContainer}>
                     <Text style={styles.text}>Awesome 🎉</Text>
                     <Text style={styles.text}>Ceci est le contenu du BottomSheet</Text>
+                    <View style={styles.btns} >
+                        <Button
+                            title='PRESS'
+                            onPress={pressHandler} />
+                    </View>
                 </BottomSheetView>
             </BottomSheetComponent>
+
         </GestureHandlerRootView>
     );
 }
@@ -37,6 +55,16 @@ export default function BottomSheet() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    imageContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5',
+    },
+    img: {
+        width: 200,
+        height: 200,
     },
     background: {
         flex: 1,
@@ -67,5 +95,9 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         marginBottom: 20,
-    }
+    },
+    btns: {
+        paddingHorizontal: 70,
+        paddingBottom: 30,
+    },
 });

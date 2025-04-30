@@ -12,6 +12,7 @@ export default function HomeScreen() {
         navigation.navigate('BottomSheet')
     };
 
+
     return (
         <View style={styles.mainContainer}>
             <View style={styles.imageContainer}>
@@ -27,6 +28,7 @@ export default function HomeScreen() {
                     onPress={handlePress}
                 />
             </View>
+
         </View>
     );
 }
