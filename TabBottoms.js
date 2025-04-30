@@ -22,7 +22,7 @@ export default function TabBottoms() {
                 component={HomeScreen}
                 options={{
                     headerShown: false,
-                    title: 'Accueil',
+                    title: 'First',
                     tabBarIcon: ({ color, size }) => (
                         <Feather name="code" size={size} color={color} />
                     )
@@ -32,8 +32,8 @@ export default function TabBottoms() {
                 name="NavbBar"
                 component={NavbBar}
                 options={{
-                    headerShown: false,
-                    title: 'Menu',
+                    headerShown: true,
+                    title: 'Second',
                     tabBarIcon: ({ color, size }) => (
                         <Feather name="code" size={size} color={color} />
                     )

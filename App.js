@@ -13,7 +13,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="TabBottoms" component={TabBottoms} />
+        <Stack.Screen name="TabBottoms" component={TabBottoms} options={{
+          headerShown: false
+        }} />
         <Stack.Screen name="BottomSheet" component={BottomSheet} />
         <Stack.Screen name="Home" component={HomeScreen} options={{
           headerShown: false,

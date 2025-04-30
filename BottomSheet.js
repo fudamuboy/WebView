@@ -12,7 +12,7 @@ export default function BottomSheet() {
     const snapPoints = useMemo(() => ['25%', '50%', '70%', '100%'], []);
 
     const handleSheetChanges = useCallback((index) => {
-        console.log('handleSheetChanges', index);
+        // console.log('handleSheetChanges', index);
     }, []);
     const pressHandler = () => {
         navigation.navigate('WebScreen')
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     btns: {
+        width: '100%',
         paddingHorizontal: 70,
         paddingBottom: 30,
     },

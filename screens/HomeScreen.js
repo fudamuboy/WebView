@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, ImageBackground, StyleSheet, View, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Header from '../components/Header';
 
 const { width, height } = Dimensions.get('window');
 
@@ -15,12 +16,14 @@ export default function HomeScreen() {
 
     return (
         <View style={styles.mainContainer}>
+            <Header />
             <View style={styles.imageContainer}>
                 <ImageBackground
                     source={require('../assets/kartal.png')}
                     style={styles.background}
                     resizeMode="contain"
                 />
+
             </View>
             <View style={styles.buttonContainer}>
                 <Button

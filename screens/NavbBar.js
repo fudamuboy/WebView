@@ -3,10 +3,17 @@ import React from 'react'
 
 export default function NavbBar() {
     return (
-        <View>
+        <View style={styles.container} >
             <Text>NavbBar</Text>
         </View>
     )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+})
