@@ -1,37 +1,50 @@
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import WebView from 'react-native-webview'
 import Constants from 'expo-constants';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 export default function WebScreen() {
-    const [visible, setVisible] = useState(false)
+    const navigation = useNavigation();
+    // 1. Référence pour accéder aux méthodes du WebView
+    const webViewRef = useRef(null);
 
-    const ActivityIndicatorElement = () => {
-        return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator color="gray" size="large" />
-                <Text style={styles.loadingText}>Chargement...</Text>
-            </View>
-        )
-    }
+    // 2. États pour gérer le comportement de la WebView
+    const [isLoading, setIsLoading] = useState(true);
+    const [canGoBack, setCanGoBack] = useState(false);
+
+    useEffect(() => {
+        navigation.setParams({
+            webViewRef: webViewRef,
+            canGoBack: canGoBack
+        });
+    }, [canGoBack]);
+
+    // 3. Gestionnaire des événements de navigation
+    const handleNavigationStateChange = (navState) => {
+        setIsLoading(navState.loading);
+        setCanGoBack(navState.canGoBack);
+    };
     return (
         <View style={styles.container}>
+            {/* Indicateur de chargement */}
+            {isLoading && (
+                <ActivityIndicator
+                    style={styles.loader}
+                    size="large"
+                    color="#0000ff"
+                />
+            )}
+
+            {/* Composant WebView */}
             <WebView
-                style={styles.webview}
+                ref={webViewRef}
                 source={{ uri: 'https://www.amazon.com.tr/' }}
-                javaScriptEnabled={true}
-                domStorageEnabled={true}
-                onLoadStart={() => setVisible(true)}
-                onLoad={() => setVisible(false)}
-                startInLoadingState={true}
-                renderLoading={() => <ActivityIndicatorElement />}
-                allowsFullscreenVideo={true}
-                allowsInlineMediaPlayback={true}
-                mediaPlaybackRequiresUserAction={false}
+                style={styles.webview}
+                onNavigationStateChange={handleNavigationStateChange}
             />
-            {visible ? <ActivityIndicatorElement /> : null}
         </View>
     )
 }
@@ -39,24 +52,14 @@ export default function WebScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
     },
     webview: {
         flex: 1,
     },
-    loadingContainer: {
+    loader: {
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    },
-    loadingText: {
-        marginTop: 10,
-        fontSize: 16,
-        color: '#666',
+        top: '50%',
+        left: '50%',
+        zIndex: 10,
     }
 })

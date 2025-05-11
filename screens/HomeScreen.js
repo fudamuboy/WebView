@@ -3,6 +3,9 @@ import { Button, ImageBackground, StyleSheet, View, Dimensions } from 'react-nat
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 
+
+
+
 const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen() {
@@ -11,6 +14,9 @@ export default function HomeScreen() {
     const handlePress = () => {
         // navigation.navigate('WebScreen');
         navigation.navigate('BottomSheet')
+        // console.log(navigation);
+        // navigation.toggleDrawer() on utilise le toggleDrawer pour ouvrir directly
+
     };
 
 

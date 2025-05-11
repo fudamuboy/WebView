@@ -32,7 +32,7 @@ export default function TabBottoms() {
                 name="NavbBar"
                 component={NavbBar}
                 options={{
-                    headerShown: true,
+                    headerShown: false,
                     title: 'Second',
                     tabBarIcon: ({ color, size }) => (
                         <Feather name="code" size={size} color={color} />
